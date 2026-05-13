@@ -40,4 +40,4 @@ Change position as normal and in processes list them as named in ps aux
 - Raspberry Pi cm5 (tested)
 - Probably works on other Raspberry Pi's
 
-- Mostly ai sloop as I don't know JS,CSS but it works and might be handy for someone else. 
+- Mostly ai slop as I don't know JS,CSS but it works and might be handy for someone else. 
