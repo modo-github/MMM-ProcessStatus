@@ -2,7 +2,7 @@
 
 Module.register("MMM-ProcessStatus", {
     defaults: {
-        processes: ["syncthing", "docker", "ssh"], // Array of processes
+        processes: ["syncthing", "docker"], // Array of processes
 
         refreshInterval: 10000,  // Refresh every 10 seconds
         iconRunning: "fa-check-circle",  // Icon when running
