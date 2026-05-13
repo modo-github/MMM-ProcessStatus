@@ -1,0 +1,22 @@
+{% if loading %}
+  <div class="process-status">
+    <p>Loading...</p>
+  </div>
+{% else %}
+  <div class="process-status">
+    {% for process in processes %}
+      <div class="process-row">
+        <div class="process-icon">
+          <i class="fa {{ process.status === 'running' ? config.iconRunning : config.iconStopped }}"></i>
+        </div>
+        <div class="process-text">
+          <span>{{ process.processName }}: 
+            <span class="{{ process.status === 'running' ? 'running' : 'stopped' }}">
+              {{ process.status === 'running' ? 'Running' : 'Stopped' }}
+            </span>
+          </span>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}

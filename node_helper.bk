@@ -1,0 +1,40 @@
+const NodeHelper = require("node_helper");
+const { exec } = require("child_process");
+
+module.exports = NodeHelper.create({
+    start() {
+        console.log("MMM-ProcessStatus helper started");
+    },
+
+    socketNotificationReceived(notification, payload) {
+        if (notification === "CHECK_PROCESS") {
+            let results = [];
+
+            // Loop through each process and check the status
+            payload.processNames.forEach((processName) => {
+                const command = payload.checkCommand || `pgrep -x "${processName}"`;
+                
+                exec(command, (error, stdout, stderr) => {
+                    let status = "stopped";  // Default status
+
+                    if (error || stderr) {
+                        console.error(`Error checking ${processName}: ${error || stderr}`);
+                    } else if (stdout.trim() !== "") {
+                        status = "running";
+                    }
+
+                    // Store result for the current process
+                    results.push({
+                        processName,
+                        status
+                    });
+
+                    // Once all processes are checked, send results back
+                    if (results.length === payload.processNames.length) {
+                        this.sendSocketNotification("PROCESS_STATUS", results);
+                    }
+                });
+            });
+        }
+    }
+});

@@ -1,0 +1,29 @@
+.process-status {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  /* Two columns */
+  gap: 20px;
+  font-size: 1.2em;
+}
+
+.process-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.process-icon {
+  font-size: 2em;
+}
+
+.process-text {
+  display: flex;
+  align-items: center;
+}
+
+.process-text .running {
+  color: #4caf50;
+}
+
+.process-text .stopped {
+  color: #f44336;
+}
